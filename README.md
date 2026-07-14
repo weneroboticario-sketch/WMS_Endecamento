@@ -49,6 +49,56 @@ Abra:
 http://127.0.0.1:3333
 ```
 
+## Deploy na Vercel
+
+O projeto está preparado para Vercel com:
+
+- `vercel.json`
+- Frontend Vite em `dist`
+- API serverless em `api/index.js`
+- Build command: `pnpm build`
+- Output directory: `dist`
+
+No painel da Vercel:
+
+1. Importe o repositório do GitHub.
+2. Em `Framework Preset`, use `Vite`.
+3. Em `Build Command`, use:
+
+```bash
+pnpm build
+```
+
+4. Em `Output Directory`, use:
+
+```text
+dist
+```
+
+5. Se o repositório tiver uma pasta acima do projeto, configure `Root Directory` para:
+
+```text
+enderecamento-estoque-profissional
+```
+
+6. Configure as variáveis de ambiente:
+
+```text
+AUTH_SECRET=uma-chave-grande-e-secreta
+DATABASE_URL=postgresql://usuario:senha@host:5432/banco?sslmode=require
+```
+
+Sem `DATABASE_URL`, a API sobe em modo demonstração em memória. Esse modo serve para testar o deploy, mas os dados podem sumir porque funções serverless não mantêm memória de forma confiável.
+
+Para produção real na Vercel, use Postgres. Opções comuns:
+
+- Vercel Postgres/Neon
+- Supabase Postgres
+- Railway Postgres
+- Neon Postgres
+
+Depois de configurar `DATABASE_URL`, faça `Redeploy`. A API cria as tabelas automaticamente no primeiro acesso.
+
 ## Como acessar pela rede local
 
 O frontend e o backend escutam em `0.0.0.0`, permitindo acesso por outros dispositivos na mesma rede.
