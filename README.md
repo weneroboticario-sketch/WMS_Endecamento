@@ -55,7 +55,7 @@ O projeto está preparado para Vercel com:
 
 - `vercel.json`
 - Frontend Vite em `dist`
-- API serverless em `api/index.js`
+- API serverless catch-all em `api/[...path].js`
 - Build command: `pnpm build`
 - Output directory: `dist`
 
@@ -66,7 +66,7 @@ No painel da Vercel:
 3. Em `Build Command`, use:
 
 ```bash
-pnpm build
+pnpm vite build
 ```
 
 4. Em `Output Directory`, use:
